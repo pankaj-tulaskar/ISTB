@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
 //import java.sql.Statement;
@@ -31,32 +32,38 @@ public class inventory_details {
 			return false;
 			
 	}
-	public List<List<String>> search_inventory(String STB_type,String billing_type){
-			List<String> al=null;
-		  List emp_list =new ArrayList();
-		  String query = "select * from employee where employee_name='"+emp_name+"' or 
-		   department='"+emp_dept+"' or email='"+email+"' 
-		  order by employee_name";
+	public List<List<String>> search_inventory(String STB_type,String billing_type) throws SQLException{
+		conn = DbConnector.getInstance();
+		List<String> al=null;
+		  List<List<String>> emp_list =new ArrayList<List<String>>();
+		  String query = "select * from stb inner join stb_inventory on stb.stb_type = stb_inventory.stb_type where stb.stb_type ='" + STB_type+ "' AND stb.stb_billing_type ='" +billing_type + "'AND stb_inventory.stb_status='unassigned'";
 		  System.out.println("query " + query);
-		  st1 = conn.createStatement();
-		  ResultSet  rs = st.executeQuery(query);
-		  
+		  PreparedStatement st2= conn.prepareStatement(query);
+		  //st1.setString(1, STB_type);
+		  //st1.setString(2,billing_type);
+		  ResultSet  rs = st2.executeQuery();
+		  ResultSetMetaData rsmd = rs.getMetaData();
+		  int columnsNumber = rsmd.getColumnCount();
+		  System.out.println("no. of rows"+columnsNumber);
 		  while(rs.next()){
-		  al  = new ArrayList();
+		  al  = new ArrayList<String>();
 		  
-		  al.add(rs.getString(1));
 		  al.add(rs.getString(2));
 		  al.add(rs.getString(3));
-		  al.add(rs.getString(4));
-		  al.add(rs.getString(5));
-		  al.add(rs.getString(6));
-		  al.add(rs.getString(7));
-		  al.add(rs.getString(8));
-		  al.add(rs.getString(10));
+		  al.add(Double.toString(rs.getDouble(4)));
+		  al.add(Double.toString(rs.getDouble(5)));
+		  al.add(Double.toString(rs.getDouble(6)));
+		  al.add(Double.toString(rs.getDouble(7)));
+		  al.add(Double.toString(rs.getDouble(8)));
+		  al.add(Double.toString(rs.getDouble(9)));
+		  al.add(Double.toString(rs.getDouble(10)));
+		  al.add(rs.getString(11));
+		  al.add(Double.toString(rs.getDouble(12)));
+		  
 		  System.out.println("al :: "+al);
 		  emp_list.add(al);
 		  }
-
-		  
+		  System.out.println("Returning emp_list"+emp_list);
+		  return emp_list;
 	}
 }

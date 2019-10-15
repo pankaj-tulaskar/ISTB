@@ -10,7 +10,7 @@ style="border:1px solid #000000;">
 <tr>
 <td colspan=8 align="center"
 style="background-color:ffeeff">
-<b>Set of box Record</b></td>
+<b>Set Top Box Record</b></td>
 </tr>
 <tr style="background-color:efefef;">
 <td><b>STB type</b></td>
@@ -20,6 +20,7 @@ style="background-color:ffeeff">
 <td><b>STB width</b></td>
 <td><b>Price</b></td>
 <td><b>Installation Charges</b></td>
+<td><b>Upgradation Charges</b></td>
 <td><b>Discount</b></td>
 <td><b>Billing type</b></td>
 <td><b>Refundable Deposit amount</b></td>
@@ -28,12 +29,12 @@ style="background-color:ffeeff">
 int count=0;
 String color = "#F9EBB3";
 
-
+System.out.println("entered view search jsp");
 if(request.getAttribute("empList")!=null)
 {
-ArrayList<ArrayList<String>> al = (ArrayList<ArrayList<String>>)request.getAttribute("empList");
-Iterator<ArrayList<String>> itr = al.iterator();
-
+	List al = (ArrayList)request.getAttribute("empList");
+	Iterator itr = al.iterator();
+	System.out.println("List al"+al);
 
 while(itr.hasNext()){
 
@@ -49,6 +50,7 @@ ArrayList<String> empList = (ArrayList<String>)itr.next();
 <tr style="background-color:<%=color%>;">
 <td><%=empList.get(0)%></td>
 <td><%=empList.get(1)%></td>
+<td><%=empList.get(2)%></td>
 <td><%=empList.get(3)%></td>
 <td><%=empList.get(4)%></td>
 <td><%=empList.get(5)%></td>

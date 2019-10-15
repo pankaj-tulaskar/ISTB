@@ -35,7 +35,7 @@ public class Controller extends HttpServlet {
 		//String billType=request.getParameter("billType");
 		//String stbType=request.getParameter("stbType");
 		//HttpSession session=request.getSession();
-		int cust_id=702;
+		int cust_id=1;
 		inventory_details sp= new inventory_details();
 		System.out.println("logic object created");
 		try {
@@ -44,7 +44,9 @@ public class Controller extends HttpServlet {
 				System.out.println("if block");
 				List<List<String>> emp_list;
 				emp_list=sp.search_inventory(request.getParameter("stbType"),request.getParameter("billType"));
+				System.out.println("got emp_list"+emp_list);
 				request.setAttribute("empList",emp_list);
+				System.out.println("set emp_list"+emp_list);
 				getServletContext().getRequestDispatcher("/ViewSearch.jsp").forward(request, response);
 			}
 			else {
