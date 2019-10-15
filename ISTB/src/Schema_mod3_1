@@ -48,3 +48,4 @@ FOREIGN KEY (stb_inventory_id ) REFERENCES stb_inventory(stb_inventory_id)
 
 
 INSERT INTO customer1 VALUES (1,'Yash','Chaudhari','abc1@gmail.com',701)
+INSERT INTO customer1 VALUES (702,'Shivani','Reddy','xyz1@gmail.com',null)

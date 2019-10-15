@@ -2,12 +2,14 @@
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 //import javax.servlet.http.HttpSession;
 
 /**
@@ -34,13 +36,16 @@ public class Controller extends HttpServlet {
 		//String stbType=request.getParameter("stbType");
 		//HttpSession session=request.getSession();
 		int cust_id=702;
-		Search_precheck sp= new Search_precheck();
+		inventory_details sp= new inventory_details();
 		System.out.println("logic object created");
 		try {
 			System.out.println("entered try block");
 			if(sp.check(cust_id)) {
 				System.out.println("if block");
-				getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
+				List<List<String>> emp_list;
+				emp_list=sp.search_inventory(request.getParameter("stbType"),request.getParameter("billType"));
+				request.setAttribute("empList",emp_list);
+				getServletContext().getRequestDispatcher("/ViewSearch.jsp").forward(request, response);
 			}
 			else {
 				System.out.println("else block");
