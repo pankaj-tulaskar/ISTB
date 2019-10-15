@@ -10,7 +10,6 @@ import java.util.*;
 public class inventory_details {
 	Connection conn=null;
 	PreparedStatement st1=null;
-	ResultSet rs=null;
 	public boolean check(int cust_id) throws SQLException {
 		
 		conn = DbConnector.getInstance();
@@ -33,17 +32,15 @@ public class inventory_details {
 			
 	}
 	public List<List<String>> search_inventory(String STB_type,String billing_type){
-			ArrayList al=null;
-		  ArrayList emp_list =new ArrayList();
-		  String query = 
-		  "select * from employee where employee_name='"+emp_name+"' or 
+			List<String> al=null;
+		  List emp_list =new ArrayList();
+		  String query = "select * from employee where employee_name='"+emp_name+"' or 
 		   department='"+emp_dept+"' or email='"+email+"' 
 		  order by employee_name";
 		  System.out.println("query " + query);
-		  st = conn.createStatement();
+		  st1 = conn.createStatement();
 		  ResultSet  rs = st.executeQuery(query);
-
-
+		  
 		  while(rs.next()){
 		  al  = new ArrayList();
 		  
