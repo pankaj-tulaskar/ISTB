@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="search.jsp">
+<p>Billing Type</p>
+  
+ <div>
+    <input type="radio" id="billingType1"
+     name="billType" value="Prepaid">
+    <label for="billingType1">PrepaidType</label>
+
+    <input type="radio" id="billingType2"
+     name="billType" value="Postpaid">
+    <label for="billingType2">PostpaidType</label>
+  </div>
+  <div>
+  <p>STB Type</p>
+  <select name="stbType">
+  <option value="standard">Standard</option>
+  <option value="HD">HD</option>
+  <option value="HD+">HD+</option>
+  <option value="IPTV">IPTV</option>
+</select><br><br>
+  </div>
+  
+ 
+  
+  <div>
+  <button type="submit">Search</button>
+  </div>
+</form>
+</body>
+</html>
