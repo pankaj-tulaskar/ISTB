@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%= "Billing Type: "+request.getParameter("billType") %><br><br>
-<%= "STB Type: "+request.getParameter("stbType") %>  
+Customer is not assigned a Retailer
 </body>
 </html>

@@ -1,0 +1,50 @@
+create table stb (
+stb_id number(10) primary key,
+stb_type varchar(20),
+stb_features varchar(20),
+stb_length dec(10),
+stb_breadth dec(10),
+stb_width dec(10),
+stb_price dec(10),
+stb_installation_charges dec(10),
+stb_upgradation_charges dec(10),
+stb_discount dec(10),
+stb_billing_type varchar(20),
+stb_refundable_deposit_amount dec(10)
+);
+
+create table stb_inventory(
+stb_inventory_id number(10) primary key,
+stb_type varchar(20),
+stb_serial_number number(20),
+stb_mac_id number(20),
+remote_asset_id number(10),
+dish_asset_id number(10),
+stb_status varchar(10)
+);
+
+drop table stb_bill;
+drop table customer1;
+
+create table customer1(
+cust_id number(10) primary key,
+cust_fname varchar(20),
+cust_lname varchar(20),
+cust_email varchar(20),
+retailer_id number(10)
+);
+
+
+create table stb_bill(
+bill_id number(10) primary key,
+cust_id number(10),
+stb_inventory_id number(10),
+payment_type varchar(20),
+CONSTRAINT fk_customer
+FOREIGN KEY (cust_id ) REFERENCES customer1(cust_id),
+CONSTRAINT fk_stb_inventory
+FOREIGN KEY (stb_inventory_id ) REFERENCES stb_inventory(stb_inventory_id)
+);
+
+
+INSERT INTO customer1 VALUES (1,'Yash','Chaudhari','abc1@gmail.com',701)
